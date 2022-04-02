@@ -29,7 +29,9 @@ class EmpleadoController extends Controller
         //
         $puestos=array();
         $puestos['puestos']=['Asesor legal y organizacional','Administrador','Analista','Diseñador UI/UX','Programador','Documentador','Analista financiero','Jefe de presupuestos','Publicista','Ventas'];
-        return view('RH/empleado.create',$puestos);
+        $departamentos=array();
+        $departamentos['departamentos']=['Administrativo','Recursos Humanos','Finanzas','Marketing','Desarrollo'];
+        return view('RH/empleado.create',$puestos,$departamentos);
     }
 
     /**

@@ -9,16 +9,17 @@ Amongos
 
     <label for="Puesto">Puesto</label>
     <select name="Puesto" id="Puesto">
-        <?php $i=0;
-        echo $puestos[0];?>
         @foreach ($puestos as $puesto)
-            $i=$i+1;
-            <option value="{{$puestos[$i]}}">{{$puestos[$i]}}</option>
+            <option value="{{$puesto}}">{{$puesto}}</option>
         @endforeach
     </select><br>
     <label for="Departamento">Departamento</label>
-    <input type="text" name="Departamento" id="Departamento"><br>
-
+    <select name="Departamento" id="Departamento">
+        @foreach ($departamentos as $departamento)
+            <option value="{{$departamento}}">{{$departamento}}</option>
+        @endforeach
+    </select>
+    <br>
     <label for="TipoContrato">Contrato: </label>
     <input type="text" name="TipoContrato" id="TipoContrato"><br>
 
