@@ -28,8 +28,6 @@
                     {{method_field('DELETE')}}
                     <input type="submit" value="Eliminar" onclick="return confirm('¿Está seguro en eliminar el registro?')">
                 </form></th>
-                |
-
         </tr>
         @endforeach
     </body>

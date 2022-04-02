@@ -64,10 +64,12 @@ class EmpleadoController extends Controller
      * @param  \App\Models\Empleado  $empleado
      * @return \Illuminate\Http\Response
      */
-    public function edit(Empleado $empleado)
+    public function edit($id)
     {
         //
-        return view('RH/empleado.edit');
+        $puestos['puestos']=['Asesor legal y organizacional','Administrador','Analista','Diseñador UI/UX','Programador','Documentador','Analista financiero','Jefe de presupuestos','Publicista','Ventas'];
+        $empleado=Empleado::findOrFail($id);
+        return view('RH/empleado.edit',compact('empleado'),$puestos);
     }
 
     /**
@@ -77,9 +79,13 @@ class EmpleadoController extends Controller
      * @param  \App\Models\Empleado  $empleado
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Empleado $empleado)
+    public function update(Request $request, $id)
     {
         //
+        $datosEmpleado=request()->except('_token','_method');
+        Empleado::where('id','=',$id)->update($datosEmpleado);
+        $datos['empleados']=Empleado::paginate(5);
+        return view('RH/empleado.index',$datos);
     }
 
     /**
@@ -92,6 +98,6 @@ class EmpleadoController extends Controller
     {
         //
         Empleado::destroy($id);
-        return redirect('empleado');
+        return redirect('RH/empleado');
     }
 }
