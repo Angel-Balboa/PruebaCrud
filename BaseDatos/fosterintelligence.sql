@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 02-04-2022 a las 05:48:37
+-- Tiempo de generación: 02-04-2022 a las 22:45:02
 -- Versión del servidor: 10.4.22-MariaDB
 -- Versión de PHP: 8.0.15
 
@@ -45,10 +45,11 @@ CREATE TABLE `empleados` (
 --
 
 INSERT INTO `empleados` (`id`, `Nombre`, `Apellidos`, `Puesto`, `Departamento`, `TipoContrato`, `Prestaciones`, `Salario`, `created_at`, `updated_at`) VALUES
-(8, 'Arturo', 'Alcocer', 'Asesor legal y organizacional', 'BD', 'Si', 'No', '5', NULL, NULL),
-(9, 'Kuroro', 'Luciferu', 'Programador', 'Desarrollo', 'Papel', 'No', '80000', NULL, '2022-04-02 09:47:58'),
-(10, 'Arturo', 'Alcocer', 'Diseñador UI/UX', 'Administrativo', 'Digital', 'Ninguna', '50000', NULL, NULL),
-(11, 'Angel Martin', 'Balboa', 'Asesor legal y organizacional', 'Administrativo', 'Si', 'Vacaciones', '655564', NULL, NULL);
+(17, 'Kuroro', 'Luciferu 3', 'Publicista', 'Marketing', 'Si', 'Vacaciones', '54454', NULL, NULL),
+(21, 'Juan', 'Perez', 'Asesor legal y organizacional', 'Administrativo', 'Papel', 'Vacaciones', '454533', NULL, '2022-04-03 01:35:13'),
+(22, 'Angel Martin', 'Balboa', 'Asesor legal y organizacional', 'Administrativo', 'Papel', 'Vacaciones,Seguro', '4455', NULL, NULL),
+(23, 'Empleado 5', 'Apellido Generico', 'Asesor legal y organizacional', 'Administrativo', 'Papel', 'Vacaciones,Seguro,Prestamos,Bonificacion', '54454565', NULL, NULL),
+(24, 'Juan', 'Perez', 'Diseñador UI/UX', 'Desarrollo', 'Digital', 'Vacaciones,Seguro', '4000', NULL, '2022-04-03 02:42:22');
 
 -- --------------------------------------------------------
 
@@ -188,7 +189,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT de la tabla `empleados`
 --
 ALTER TABLE `empleados`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- AUTO_INCREMENT de la tabla `failed_jobs`

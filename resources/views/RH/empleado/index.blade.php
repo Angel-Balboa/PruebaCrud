@@ -32,3 +32,5 @@
         @endforeach
     </body>
 </table>
+
+<a href="{{ url('/RH/empleado/create') }}" type="button">Agregar Empleado</a>

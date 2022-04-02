@@ -14,7 +14,7 @@ class EmpleadoController extends Controller
      */
     public function index()
     {
-        $datos['empleados']=Empleado::paginate(5);
+        $datos['empleados']=Empleado::paginate();
         return view('RH/empleado.index',$datos);
 
     }
@@ -42,9 +42,26 @@ class EmpleadoController extends Controller
      */
     public function store(Request $request)
     {
-        $datosEmpleado=request()->except('_token');
-        Empleado::insert($datosEmpleado);
-        return response()->json($datosEmpleado);
+        $datosEmpleado=request()->except('_token','Prestaciones','Salario');
+        $prestacion=implode(',',$request->Prestaciones);
+        $P["Prestaciones"]=$prestacion;
+        $Salario=$request->Salario;
+        $S["Salario"]=$Salario;
+        $emp=$datosEmpleado+$P+$S;
+        $validaciones=['Nombre'=>'required|string|max:100',
+            'Apellidos'=>'required|string|max:100',
+            'Puesto'=>'required|string|max:100',
+            'Departamento'=>'required|string|max:100',
+            'TipoContrato'=>'required|string|max:100',
+            'Prestaciones'=>'required|max:100',
+            'Salario'=>'required|int',];
+        $mensaje=['required'=>'El :attribute es requerido.',
+            'Apellidos.required'=>'Los apellidos son requeridos',
+            'Prestaciones.required'=>'Las prestaciones son requeridas',];
+        $this->validate($request,$validaciones,$mensaje);
+        Empleado::insert($emp);
+
+        return redirect('RH/empleado');
     }
 
     /**
@@ -56,6 +73,7 @@ class EmpleadoController extends Controller
     public function show(Empleado $empleado)
     {
         //
+        
     }
 
     /**
@@ -82,10 +100,26 @@ class EmpleadoController extends Controller
     public function update(Request $request, $id)
     {
         //
-        $datosEmpleado=request()->except('_token','_method');
-        Empleado::where('id','=',$id)->update($datosEmpleado);
-        $datos['empleados']=Empleado::paginate(5);
-        return view('RH/empleado.index',$datos);
+        $datosEmpleado=request()->except('_token','Prestaciones','Salario','_method');
+        $prestacion=implode(',',$request->Prestaciones);
+        $P["Prestaciones"]=$prestacion;
+        $Salario=$request->Salario;
+        $S["Salario"]=$Salario;
+        $emp=$datosEmpleado+$P+$S;
+        $validaciones=['Nombre'=>'required|string|max:100',
+            'Apellidos'=>'required|string|max:100',
+            'Puesto'=>'required|string|max:100',
+            'Departamento'=>'required|string|max:100',
+            'TipoContrato'=>'required|string|max:100',
+            'Prestaciones'=>'required|max:100',
+            'Salario'=>'required|int',];
+        $mensaje=['required'=>'El :attribute es requerido.',
+            'Apellidos.required'=>'Los apellidos son requeridos',
+            'Prestaciones.required'=>'Las prestaciones son requeridas',];
+        $this->validate($request,$validaciones,$mensaje);
+        Empleado::where('id','=',$id)->update($emp);
+        $datos['empleados']=Empleado::paginate();
+        return redirect('RH/empleado');
     }
 
     /**
