@@ -4,9 +4,19 @@ namespace App\Http\Controllers;
 
 use App\Models\Empleado;
 use Illuminate\Http\Request;
+use PDF;
 
 class EmpleadoController extends Controller
 {
+    public function pdf($id)
+    {
+        //
+        $empleado=Empleado::findOrFail($id);
+        $pdf=PDF::loadView('RH/empleado.pdf',['empleado'=>$empleado]);
+        return $pdf->download($empleado['Nombre'].'.pdf');
+        //return view('RH/empleado.pdf',compact('empleado'));
+    }
+    
     /**
      * Display a listing of the resource.
      *
@@ -89,6 +99,7 @@ class EmpleadoController extends Controller
         $empleado=Empleado::findOrFail($id);
         return view('RH/empleado.edit',compact('empleado'),$puestos);
     }
+
 
     /**
      * Update the specified resource in storage.
